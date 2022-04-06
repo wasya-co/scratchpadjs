@@ -2,17 +2,14 @@
 import { ToastContainer, toast } from 'react-toastify'
 import React, { useContext } from 'react'
 
-import request from '$shared' // @TODO: this isn't wired yet
+import request from './request'
 
 import config from 'config'
 import {
   AuthContext,
   logg,
 } from 'ishlibjs'
-
-const C = {
-  anonUser: {},
-}
+import C from './C'
 
 const useApi = () => {
   const {
@@ -23,6 +20,8 @@ const useApi = () => {
   return {
     postLogin: ({ email, password }) => {
       request.post(`${config.apiOrigin}${config.router.loginPath}`, { email, password }).then((r) => r.data).then((resp) => {
+        logg(resp, 'got this resp')
+
         localStorage.setItem(C.jwt_token, resp.jwt_token)
         localStorage.setItem(C.current_user, JSON.stringify(resp))
         setCurrentUser(resp) // must be done *after* setting C.jwt_token

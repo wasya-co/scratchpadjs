@@ -14,7 +14,7 @@ import { C, useApi } from '$shared'
 import './Home.css'
 
 const Home = (props) => {
-  // logg(props, 'Home')
+  logg(props, 'Home')
 
   const [ currentUser, setCurrentUser ] = useState(C.anonUser)
 
