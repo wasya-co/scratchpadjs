@@ -1,9 +1,12 @@
 
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 import React, { useEffect, useState } from "react"
+import PropTypes from 'prop-types'
 
 import {
-  PasswordLogin, Scratchpad, TwofoldContextProvider,
+  AuthContextProvider, AuthWidget,
+  logg,
+  Scratchpad,
 } from "ishlibjs"
 
 import { C, useApi } from '$shared'
@@ -23,10 +26,10 @@ const Home = (props) => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <TwofoldContextProvider {...providerProps} >
-          <PasswordLogin />
-          <Scratchpad />
-        </TwofoldContextProvider>
+        <AuthContextProvider {...providerProps} >
+          <AuthWidget />
+          { currentUser.email && <Scratchpad /> }
+        </AuthContextProvider>
       </IonContent>
     </IonPage>
   )
