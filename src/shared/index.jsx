@@ -16,10 +16,11 @@ const useApi = () => {
     setCurrentUser,
     setLoginModalOpen,
   } = useContext(AuthContext)
+  const jwt_token = localStorage.getItem(C.jwt_token)
 
   return {
     postLogin: ({ email, password }) => {
-      request.post(`${config.apiOrigin}${config.router.loginPath}`, { email, password }).then((r) => r.data).then((resp) => {
+      return request.post(`${config.apiOrigin}${config.router.loginPath}`, { email, password }).then((r) => r.data).then((resp) => {
         logg(resp, 'got this resp')
 
         localStorage.setItem(C.jwt_token, resp.jwt_token)
@@ -31,7 +32,18 @@ const useApi = () => {
         toast("Login failed")
         setCurrentUser(C.anonUser)
       })
-    }
+    },
+
+    postProfile: ({ scratchpad }) => {
+      return request.post(`${config.apiOrigin}${config.router.myProfilePath}`,
+        { jwt_token, profile: { scratchpad, } }
+      ).then((r) => r.data).then((resp) => {
+        logg(resp, 'got this resp')
+      }).catch((e) => {
+        logg(e, 'e320')
+      })
+    },
+
   }
 }
 

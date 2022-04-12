@@ -1,5 +1,7 @@
 {
   "name": "scratchpadjs",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }

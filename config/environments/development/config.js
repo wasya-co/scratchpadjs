@@ -4,6 +4,7 @@ module.exports = {
 
   router: {
     loginPath: '/api/users/login',
+    myProfilePath: '/api/users/profile/update',
   },
 
 }
