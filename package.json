@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@capacitor/android": "^3.4.3",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.4.3",
     "@capacitor/haptics": "1.1.4",
@@ -44,6 +45,7 @@
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
     "ionicons": "^5.4.0",
+    "ishlibjs": "wasyaco/ishlibjs#0.1.2",
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
@@ -86,8 +88,7 @@
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4",
-    "workbox-webpack-plugin": "^6.4.1",
-    "ishlibjs": "wasyaco/ishlibjs#0.1.2"
+    "workbox-webpack-plugin": "^6.4.1"
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3",
