@@ -11,6 +11,7 @@ import {
 } from 'ishlibjs'
 import C from './C'
 
+
 const useApi = () => {
   const {
     setCurrentUser,
@@ -47,8 +48,10 @@ const useApi = () => {
   }
 }
 
+export { default as S } from './S'
 export default useApi
 export {
   C,
+  logg,
   useApi,
 }
