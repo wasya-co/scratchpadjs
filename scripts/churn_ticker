@@ -1,0 +1,104 @@
+#!/usr/bin/env ruby
+
+require 'csv'
+require 'json'
+
+def puts! a, b=''
+  puts "+++ +++ #{b}"
+  puts a.inspect
+end
+
+if ARGV.length == 0
+  puts ""
+  puts "+++ +++ Usage: ./scripts/churn_ticker <ticker> [<horizon>] [<volatility-horizon>]"
+  puts ""
+  puts "  Horizon is days."
+  puts "  Volatility Horizon is also days (e.g. 30)."
+  puts ""
+
+  exit -1
+end
+
+ticker = ARGV[0].upcase
+horizon = ARGV[1]&.to_i
+n_days = volatility_horizon = ARGV[2]&.to_i
+
+idx = 0
+out = []
+
+if n_days
+  sums = {}
+  sums[n_days] = 0
+  vars = {}
+  vars[n_days] = 0
+  deviations = {}
+  sums_dev_sq = {}
+  sums_dev_sq[n_days] = 0
+  sum_sym = "sum_#{n_days}".to_sym
+  dev_sym = "deviation_#{n_days}_sq".to_sym
+  var_sym = "variance_#{n_days}".to_sym
+end
+
+data = CSV.read("./data/#{ticker}.csv", headers: true)
+
+filename = "./data/#{ticker}.json"
+if horizon
+  data = data[0...horizon]
+  filename = "./data/#{ticker}-#{horizon}.json"
+end
+
+data = data.reverse
+
+CSV.open(filename.sub("json", "csv"), "w") do |csv|
+  data.each do |d|
+    csv << d
+  end
+end
+
+data.each_with_index do |d, idx|
+  t = {
+    date: Date.strptime(d[0], '%m/%d/%Y').strftime('%Y-%m-%d'),
+    open: d[3].sub('$', '').to_f,
+    high: d[4].sub('$', '').to_f,
+    low: d[5].sub('$', '').to_f,
+    close: d[1].sub('$', '').to_f,
+    volume: d[2].to_i,
+  }
+  # puts! t, 't'
+
+  ##
+  ## variance
+  ##
+  if n_days
+    sums[n_days] += t[:close]
+    t[sum_sym] = sums[n_days]
+
+    if idx >= n_days - 1
+      puts! idx, 'idx'
+
+      mean = sums[n_days] / n_days # @TODO: this can be one variable, not a hash
+      puts! mean, 'mean'
+
+      deviations[n_days] = t[:close] - mean
+      puts! deviations[n_days], 'deviations[n_days]'
+
+      t[dev_sym] = deviations[n_days] * deviations[n_days]
+      puts! t[dev_sym], 't[dev_sym]'
+
+      sums_dev_sq[n_days] += t[dev_sym]
+      if idx >= n_days + n_days - 2
+        t[var_sym] = (sums_dev_sq[n_days] / n_days).round(2)
+
+        sums_dev_sq[n_days] -= out[idx - n_days + 1][dev_sym]
+      end
+
+      sums[n_days] -= out[idx - n_days + 1][:close]
+    end
+  end
+
+  out.push( t )
+  # puts! out, 'out'
+end
+
+
+File.write(filename, JSON.pretty_generate(out))

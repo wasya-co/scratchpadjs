@@ -27,7 +27,7 @@ import '@ionic/react/css/flex-utils.css'
 import '@ionic/react/css/display.css'
 
 /* Theme variables */
-import './theme/variables.css'
+// import './theme/variables.css'
 
 import {
   AuthContextProvider, AuthWidget,
@@ -41,8 +41,8 @@ import {
   useApi,
 } from '$shared'
 
+import StockChart from './pages/StockChart'
 import StockWatches from './pages/StockWatches'
-
 import Home from './pages/Home'
 
 setupIonicReact()
@@ -81,6 +81,10 @@ const App = (props) => {
       label: 'Stock Alerts',
       key: 's-a',
       path: () => '/iron_warbler/stock_alerts',
+    }, {
+      label: 'Stock Chart',
+      key: 's-c',
+      path: () => '/iron_warbler/stock_charts/GME',
     },
   ];
 
@@ -103,6 +107,7 @@ const App = (props) => {
                   <Route exact path="/home"><Home /></Route>
                   <Route exact path="/"><Redirect to="/home" /></Route>
                   <Route exact path="/iron_warbler/stock_alerts"><StockWatches /></Route>
+                  <Route exact path="/iron_warbler/stock_charts/:ticker"><StockChart /></Route>
 
                 </W0>
               </IonRouterOutlet>

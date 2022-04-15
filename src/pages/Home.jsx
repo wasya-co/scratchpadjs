@@ -12,7 +12,8 @@ import {
 
 import { C, useApi } from '$shared'
 
-import './Home.css'
+import './Home.scss'
+import 'ishlibjs/dist/index.css'
 
 const W0 = styled.div`
   // border: 1px solid yellow;
