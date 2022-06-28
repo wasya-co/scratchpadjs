@@ -93,6 +93,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3",
+    "ishlibjs": "^0.2.4",
     "link-module-alias": "^1.2.0",
     "node-sass": "^7.0.1",
     "react-scripts": "5.0.0",
@@ -140,12 +141,10 @@
       "^(?!.*\\.(js|jsx|mjs|cjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs)$",
-      "^.+\\.module\\.(css|sass|scss)$"
+      "node_modules/ishlibjs/node_modules/(?!@ionic|(?!deck.gl)|ng-dynamic)"
     ],
     "modulePaths": [],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
@@ -179,6 +178,6 @@
     "postinstall": "link-module-alias",
     "start": "NODE_PATH=config/environments/development:shared_modules HTTPS=false PORT=3000 node scripts/start.js",
     "sync": "NODE_PATH=config/environments/production:shared_modules ionic capacitor sync",
-    "test": "node scripts/test.js --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'"
+    "test": "NODE_PATH=config/environments/test:shared_modules node scripts/test.js --watchAll=false"
   }
 }
