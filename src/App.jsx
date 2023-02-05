@@ -44,6 +44,7 @@ import {
 import StockChart from './pages/StockChart'
 import StockWatches from './pages/StockWatches'
 import Home from './pages/Home'
+import Nope from './pages/Nope'
 
 setupIonicReact()
 
@@ -71,7 +72,6 @@ const App = (props) => {
     useApi,
   }
 
-  // @TODO: specify types. path is a function!
   const listItems = [
     {
       label: 'Scratchpad',
@@ -85,6 +85,10 @@ const App = (props) => {
       label: 'Stock Chart',
       key: 's-c',
       path: () => '/iron_warbler/stock_charts/GME',
+    }, {
+      label: 'NOPE chart (test)',
+      key: 'nope-chart-test',
+      path: () => '/iron_warbler/NOPE-1',
     },
   ];
 
@@ -106,6 +110,7 @@ const App = (props) => {
 
                   <Route exact path="/home"><Home /></Route>
                   <Route exact path="/"><Redirect to="/home" /></Route>
+                  <Route exact path="/iron_warbler/NOPE-1"><Nope /></Route>
                   <Route exact path="/iron_warbler/stock_alerts"><StockWatches /></Route>
                   <Route exact path="/iron_warbler/stock_charts/:ticker"><StockChart /></Route>
 
