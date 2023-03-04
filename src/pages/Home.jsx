@@ -4,13 +4,14 @@ import React, { useContext, useEffect, useState } from "react"
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import {
-  AuthContext, AuthWidget,
-  logg,
-  Scratchpad,
-} from "ishlibjs"
 
-import { C, useApi } from '$shared'
+import { AuthContext, AuthContextProvider } from '$components/users/AuthContext'
+import AuthWidget from '$components/users/AuthWidget'
+// import Scratchpad from '$components/users/Scratchpad'
+import {
+  C,
+  useApi,
+} from '$shared'
 
 import './Home.scss'
 import 'ishlibjs/dist/index.css'
@@ -30,8 +31,10 @@ const Home = (props) => {
   // return <div style={{ border: '1px solid green' }} >Home</div>
 
   return <W0>
-    <AuthWidget />
-    { currentUser.email && <Scratchpad /> }
+     <AuthContextProvider {...{ useApi, }} >
+      <AuthWidget />
+      {/* { currentUser.email && <Scratchpad /> } */}
+    </AuthContextProvider >
   </W0>
 }
 

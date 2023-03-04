@@ -6,7 +6,7 @@ module.exports = {
     leadsetsPath: '/api/leadsets',
     loginPath: '/api/users/login',
 
-    myProfilePath: '/api/users/profile/update',
+    myProfilePath: '/api/my/account',
   },
 
 }

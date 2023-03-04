@@ -45,6 +45,7 @@ import StockChart from './pages/StockChart'
 import StockWatches from './pages/StockWatches'
 import Home from './pages/Home'
 import Nope from './pages/Nope'
+import MyAccount from './pages/MyAccount'
 
 setupIonicReact()
 
@@ -75,19 +76,23 @@ const App = (props) => {
   const listItems = [
     {
       label: 'Scratchpad',
-      key: 'home',
+      key: 'a',
       path: () => '/',
     }, {
+      label: 'Account',
+      key: 'b',
+      path: () => '/my/account',
+    }, {
       label: 'Stock Alerts',
-      key: 's-a',
+      key: 'c',
       path: () => '/iron_warbler/stock_alerts',
     }, {
       label: 'Stock Chart',
-      key: 's-c',
+      key: 'd',
       path: () => '/iron_warbler/stock_charts/GME',
     }, {
       label: 'NOPE chart (test)',
-      key: 'nope-chart-test',
+      key: 'e',
       path: () => '/iron_warbler/NOPE-1',
     },
   ];
@@ -98,8 +103,6 @@ const App = (props) => {
     <ThemeProvider theme={S.lightTheme} >
       <AuthContextProvider {...providerProps} >
         <IonContent fullscreen >
-
-
 
             <IonReactRouter>
 
@@ -113,6 +116,7 @@ const App = (props) => {
                   <Route exact path="/iron_warbler/NOPE-1"><Nope /></Route>
                   <Route exact path="/iron_warbler/stock_alerts"><StockWatches /></Route>
                   <Route exact path="/iron_warbler/stock_charts/:ticker"><StockChart /></Route>
+                  <Route exact path="/my/account"><MyAccount /></Route>
 
                 </W0>
               </IonRouterOutlet>
