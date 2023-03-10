@@ -1,4 +1,25 @@
 
+-=----- From 2023-02-xx
+
+SELECT symbol, bid, ask, MAX(`timestamp`) as a
+FROM iwa_option_price_items
+where symbol = "GME_021023P20"
+GROUP BY symbol, bid, ask, DATE(`timestamp`), HOUR(`timestamp`), Minute(`timestamp`)
+order by a desc;
+
+SELECT symbol, MAX(`timestamp`) as a
+FROM iwa_option_price_items
+where symbol = "GME_021023P20"
+GROUP BY symbol, DATE(`timestamp`), HOUR(`timestamp`), Minute(`timestamp`)
+order by a desc;
+
+select timestamp as a FROM iwa_option_price_items
+where symbol = "GME_021023P20"
+order by a desc;
+
+
+-=----- 2023-03-10
+
 SELECT
   SUM(donation_amount) AS total_donation_amount,
   EXTRACT(YEAR from timestamp) AS year,
