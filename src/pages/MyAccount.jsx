@@ -1,5 +1,12 @@
 
-import React, { useEffect, useState } from 'react'
+
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 import {
   logg,
@@ -14,7 +21,6 @@ const MyAccount = (props) => {
   const api = useApi()
 
   useEffect(() => {
-    logg('getting it?')
     api.getMyAccount().then(r => {
       setAccount(r)
     })

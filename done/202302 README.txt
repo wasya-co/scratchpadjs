@@ -1,0 +1,90 @@
+
+== Ethereum ==
+
+From: https://docs.alchemy.com/alchemy/tutorials/how-to-create-an-nft
+From: https://docs.alchemy.com/alchemy/tutorials/how-to-create-an-nft/how-to-mint-a-nft
+
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+npx hardhat help
+REPORT_GAS=true npx hardhat test
+npx hardhat coverage
+npx hardhat run scripts/deploy.js --network ropsten
+node scripts/deploy.js
+npx eslint '**/*.js'
+npx eslint '**/*.js' --fix
+npx prettier '**/*.{json,sol,md}' --check
+npx prettier '**/*.{json,sol,md}' --write
+npx solhint 'contracts/**/*.sol'
+npx solhint 'contracts/**/*.sol' --fix
+
+hardhat run --network ropsten scripts/deploy.js
+
+npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
+```
+
+== Facebook Login ==
+
+From: https://ionicframework.com/docs/native/facebook
+
+fb app id: 3016949928380365
+
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="3016949928380365" --variable APP_NAME="Guyd"
+
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+
+ionic cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="3016949928380365" --variable APP_NAME="Guyd"
+
+== Metamask Login ==
+
+From: https://medium.com/coinmonks/web3-react-connect-users-to-metamask-or-any-wallet-from-your-frontend-241fd538ed39
+
+
+
+
+= Run =
+ yarn run start_local
+ yarn run next_dev
+
+
+= Test =
+
+This application is to be test-driven, and regression bugs should gain a test when fixed. While we are not rock-hard on this rule, and committing code without tests is allowed, we very much encourage writing tests with code. We reserve the right to reject code that is not tested. Effectively, TDD is almost required.
+
+We use jest, enzyme. See package.json and scripts/ .
+
+ yarn run test # runs all tests
+ yarn run test -- <filename> # runs only one test file
+ yarn run jest -- <filename> # runs only tests marked 'current2' in this one test file
+
+See the android logs from the shell:
+
+ adb logcat
+
+= Deploy =
+
+== For Android ==
+From: https://capacitorjs.com/docs/android
+From: https://capacitor.ionicframework.com/docs/android/
+
+ yarn run build
+ npx cap sync android
+ # npx cap open android
+
+After running above commands, android studio will get open then you can build app from there
+
+== nextjs ==
+From: https://gist.github.com/jjsquady/5399d6e1b23f501083a9c262d806e248
+
+  $ yarn build # build our app for production (npm build script: next build)
+  $ yarn global add pm2 # install pm2 to keep next app alive forever*
+
+  # run start/stop
+  $ pm2 start npm --name "next" -- start # start next app (npm start script: next start)
+  $ pm2 stop next # for stopping app
+
